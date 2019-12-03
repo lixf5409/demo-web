@@ -113,8 +113,11 @@ export default {
           userList = response.data;
         }
         userList.forEach(element => {
-          request({url:"/api/depts/dept/"+element.deptId,method:"get"}).then(response => {
-            element.deptName =  response.data.deptName;
+          request({
+            url: "/api/depts/dept/" + element.deptId,
+            method: "get"
+          }).then(response => {
+            element.deptName = response.data.deptName;
           });
         });
         this.data = userList;

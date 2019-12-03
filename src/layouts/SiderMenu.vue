@@ -21,6 +21,7 @@
  * recommend SubMenu.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu.vue
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
+
 import SubMenu from "./SubMenu";
 import { check } from "../utils/auth.js";
 

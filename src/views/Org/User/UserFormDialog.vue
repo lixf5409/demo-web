@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a-button type="primary" @click="showModal">Open Modal with async logic</a-button>
     <a-modal
       title="Title"
       :visible="visible"
@@ -8,35 +7,48 @@
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
     >
-     <UserForm :userId = "userId"></UserForm>
+      <UserForm :vdeptId="deptId"></UserForm>
     </a-modal>
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        userId: '1',
-        visible: false,
-        confirmLoading: false,
-      };
+import UserForm from "../User/UserForm.vue";
+export default {
+  components: { UserForm },
+  props: {
+    showDialog: { type: Boolean, default: false }
+  },
+  data() {
+    return {
+      confirmLoading: false,
+      visible: this.showDialog,
+      deptId:"2"
+    };
+  },
+  watch: {
+      showDialog:function(value){
+        this.visible = value;
+      }
+  },
+  methods: {
+    showModal() {
+      this.visible = true;
     },
-    methods: {
-      showModal() {
-        this.visible = true;
-      },
-      handleOk(e) {
-        this.ModalText = 'The modal will be closed after two seconds';
-        this.confirmLoading = true;
-        setTimeout(() => {
-          this.visible = false;
-          this.confirmLoading = false;
-        }, 2000);
-      },
-      handleCancel(e) {
-        //console.log('Clicked cancel button');
+    handleOk() {
+      this.ModalText = "正在保存，稍后关闭";
+      this.confirmLoading = true;
+
+      setTimeout(() => {
         this.visible = false;
-      },
+        this.$emit("changeVisable");
+        this.confirmLoading = false;
+      }, 2000);
     },
-  };
+    handleCancel() {
+      //console.log('Clicked cancel button');
+      this.visible = false;
+      this.$emit("changeVisable");
+    }
+  }
+};
 </script>

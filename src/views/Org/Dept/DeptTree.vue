@@ -1,5 +1,5 @@
 <template>
-  <a-tree :expandedKeys=expandedKeys @select="onSelect" :treeData="treeData"></a-tree>
+  <a-tree :expandedKeys="expandedKeys" @select="onSelect" :treeData="treeData"></a-tree>
 </template>
 <script>
 import request from "../../../utils/request.js";
@@ -10,9 +10,9 @@ export default {
   },
   data() {
     return {
-      treeData:[],
-      expandedKeys:[],
-      autoExpandParent:"true"
+      treeData: [],
+      expandedKeys: [],
+      autoExpandParent: "true"
     };
   },
   methods: {
@@ -55,8 +55,7 @@ export default {
           this.expandedKeys = [];
           response.data.forEach(element => {
             this.expandedKeys.push(element.deptId);
-          })
-
+          });
         }
       });
     }

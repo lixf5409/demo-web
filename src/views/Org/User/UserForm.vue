@@ -2,10 +2,7 @@
   <div>
     <a-form layout="horizontal" :form="form">
       <a-form-item :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol">
-        <a-input
-          type="hidden"
-          v-decorator="['userId',{initialValue:userId}]"
-        />
+        <a-input type="hidden" v-decorator="['userId',{initialValue:userId}]" />
       </a-form-item>
       <a-form-item
         label="用户编码"
@@ -103,23 +100,29 @@ import moment from "moment";
 import request from "../../../utils/request.js";
 import { notification } from "ant-design-vue";
 export default {
+  props:{
+    vdeptId:{
+      type:String,
+      default:"3"
+    }
+  },
   data() {
     this.form = this.$form.createForm(this);
     return {
       formLayout: "horizontal",
       deptName: "",
-      deptId: this.$route.query.deptId,
+      deptId: this.vdeptId,
       userId: this.$route.query.userId,
-      userName:null,
-      userCode:null,
-      sex:null,
-      birthday:null,
-      phone:null,
-      remarks:null
+      userName: null,
+      userCode: null,
+      sex: null,
+      birthday: null,
+      phone: null,
+      remarks: null
     };
   },
   mounted() {
-    if(this.userId){
+    if (this.userId) {
       this.getUser();
     } else {
       this.getDept();
@@ -146,15 +149,17 @@ export default {
   },
   methods: {
     moment,
-    getUser(){
+    getUser() {
       request({
         url: "/api/users/user/" + this.userId,
-        method: "get",
+        method: "get"
       }).then(response => {
         if (response.data) {
           this.deptId = response.data.deptId;
-          let birthday = response.data.birthday?moment(response.data.birthday):null;
-          let user = {...response.data,"birthday":birthday};
+          let birthday = response.data.birthday
+            ? moment(response.data.birthday)
+            : null;
+          let user = { ...response.data, birthday: birthday };
           this.deptName = response.data.deptName;
           this.form.setFieldsValue(user);
           //this.getDept();
@@ -176,7 +181,10 @@ export default {
     },
     handleSubmit() {
       this.form.validateFields((err, fieldsValue) => {
-        let values ={...fieldsValue,"birthday":fieldsValue['birthday'].format('YYYY-MM-DD')}
+        let values = {
+          ...fieldsValue,
+          birthday: fieldsValue["birthday"].format("YYYY-MM-DD")
+        };
         if (!err) {
           let requestObj = {
             url: "/api/users/user",
