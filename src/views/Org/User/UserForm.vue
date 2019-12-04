@@ -100,18 +100,12 @@ import moment from "moment";
 import request from "../../../utils/request.js";
 import { notification } from "ant-design-vue";
 export default {
-  props:{
-    vdeptId:{
-      type:String,
-      default:"3"
-    }
-  },
   data() {
     this.form = this.$form.createForm(this);
     return {
       formLayout: "horizontal",
       deptName: "",
-      deptId: this.vdeptId,
+      deptId: this.$route.query.deptId,
       userId: this.$route.query.userId,
       userName: null,
       userCode: null,

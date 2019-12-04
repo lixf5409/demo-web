@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import 'babel-polyfill'
 
 import {
   Button,
@@ -20,6 +21,7 @@ import {
 } from "ant-design-vue";
 import Authorized from "./components/Authorized.vue";
 import Auth from "./directives/auth.js";
+
 Vue.config.productionTip = false;
 
 Vue.use(Button);

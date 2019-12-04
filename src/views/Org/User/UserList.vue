@@ -86,7 +86,6 @@ export default {
   },
   methods: {
     onSelectChange(selectedRowKeys) {
-      //console.log('selectedRowKeys changed: ', selectedRowKeys);
       this.selectedRowKeys = selectedRowKeys;
     },
     getDpetId(keys) {
@@ -141,13 +140,6 @@ export default {
       }
     },
     confirm() {
-      this.onDel();
-      this.$message.success("Click on Yes");
-    },
-    cancel() {
-      this.$message.error("Click on No");
-    },
-    onDel() {
       this.selectedRowKeys.forEach(element => {
         request({
           url: "/api/users/user/" + element,
@@ -156,6 +148,10 @@ export default {
         }).then(() => {});
       });
       this.getList();
+      this.$message.success("Click on Yes");
+    },
+    cancel() {
+      this.$message.error("Click on No");
     }
   }
 };
