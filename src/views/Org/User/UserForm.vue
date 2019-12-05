@@ -106,7 +106,7 @@ export default {
       formLayout: "horizontal",
       deptName: "",
       deptId: this.$route.query.deptId,
-      userId: this.$route.query.userId,
+      userId: this.$route.params.id,
       userName: null,
       userCode: null,
       sex: null,

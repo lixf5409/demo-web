@@ -39,7 +39,7 @@ const routes = [
               )
           },
           {
-            path: "/org/user-form",
+            path: "/org/user-form/:id?",
             name: "form",
             hideInMenu: true,
             meta: {

@@ -132,10 +132,7 @@ export default {
         });
       } else {
         this.$router.push({
-          path: "/org/user-form",
-          query: {
-            userId: userId
-          }
+          path: "/org/user-form/"+userId
         });
       }
     },
