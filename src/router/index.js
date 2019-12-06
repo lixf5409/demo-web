@@ -58,7 +58,7 @@ const routes = [
             },
             component: () =>
               import(
-                /*webpackChunkName:"user"*/ "../views/Org/User/UserList.vue"
+                /*webpackChunkName:"user"*/ "../views/Org/Dept/DeptList.vue"
               )
           }
         ]
